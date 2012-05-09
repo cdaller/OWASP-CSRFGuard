@@ -21,3 +21,7 @@ OWASP CSRFGuard is offered under the [BSD license](http://www.opensource.org/lic
 ## Email List
 
 You can sign up for the OWASP CSRFGuard email list [here.]( https://lists.owasp.org/mailman/listinfo/owasp-csrfguard)
+
+## Maven Support
+
+You can compile the jar file and the test web application with maven: "maven package" creates all necessary resources in the target directories. The Test web application also supports the jetty plugin with "maven jetty:run" for fast testing.

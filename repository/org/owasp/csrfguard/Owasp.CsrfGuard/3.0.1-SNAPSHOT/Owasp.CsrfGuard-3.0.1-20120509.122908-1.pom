@@ -1,0 +1,146 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.owasp.csrfguard</groupId>
+  <artifactId>Owasp.CsrfGuard</artifactId>
+  <packaging>jar</packaging>
+  <version>3.0.1-SNAPSHOT</version>
+
+  <name>OWASP-CSRFGuard</name>
+  <url>https://www.owasp.org/index.php/Category:OWASP_CSRFGuard_Project</url>
+  
+   <organization>
+    <name>OWASP</name>
+    <url>http://www.owasp.org</url>
+  </organization>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
+  <distributionManagement>
+    <repository>
+      <id>github-pages</id>
+      <url>file:///${basedir}/../repository/</url>
+    </repository>
+  </distributionManagement>
+
+
+  <dependencies>  
+      <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <version>2.5</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>2.1</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+  
+  <build>
+    <plugins>
+      <!-- compile the library -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <verbose>true</verbose>
+          <fork>true</fork>
+          <compilerVersion>1.5</compilerVersion>
+          <debug>true</debug>
+          <showDeprecation>true</showDeprecation>
+          <optimize>true</optimize>
+        </configuration>
+      </plugin>
+      <!-- create jar file with manifest file -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+              <addDefaultSpecificationEntries>false</addDefaultSpecificationEntries>
+            </manifest>
+            <manifestEntries>
+              <Project-Lead>Eric Sheridan (eric@infraredsecurity.com)</Project-Lead>
+              <Url>${project.url}</Url>
+            </manifestEntries>
+          </archive>
+        </configuration>
+      </plugin>
+      <!-- create source jar file with manifest -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.1.2</version>
+        <configuration>
+          <encoding>UTF-8</encoding>
+          <charset>UTF-8</charset>
+          <archive>
+                <manifest>
+                  <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                  <addDefaultSpecificationEntries>false</addDefaultSpecificationEntries>
+                </manifest>
+               <manifestEntries>
+                 <Project-Lead>Eric Sheridan (eric@infraredsecurity.com)</Project-Lead>
+                 <Url>${project.url}</Url>
+               </manifestEntries>
+          </archive>
+        </configuration>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <phase>package</phase>
+            <goals>
+              <goal>jar-no-fork</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.5</version>
+        <executions>
+          <execution>
+            <id>copy-resources</id>
+            <!-- here the phase you need -->
+            <phase>package</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}</outputDirectory>
+              <resources>          
+                <resource>
+                  <directory>src/main/resources</directory>
+                  <filtering>true</filtering>
+                </resource>
+              </resources>              
+            </configuration>            
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+    <resources>
+        <!-- put some more files into the META-INF directory -->
+        <resource>
+          <directory>src/main/resources</directory>
+            <includes>
+                <include>Owasp.CsrfGuard.tld</include>
+                <include>License.txt</include>
+                <include>Readme.txt</include>
+            </includes>
+          <targetPath>META-INF</targetPath>
+          <filtering>true</filtering>
+        </resource>
+    </resources>
+  </build>
+
+</project>

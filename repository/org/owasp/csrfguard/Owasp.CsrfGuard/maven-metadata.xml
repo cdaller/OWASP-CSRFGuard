@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.owasp.csrfguard</groupId>
+  <artifactId>Owasp.CsrfGuard</artifactId>
+  <versioning>
+    <versions>
+      <version>3.0.1-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20120509122908</lastUpdated>
+  </versioning>
+</metadata>
